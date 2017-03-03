@@ -1,0 +1,29 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- Dev Mode TRUE ; disable in production! -->
+	<constant name="struts.devMode" value="true" />
+
+	<package name="BeautyMusic" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="authentication"
+				class="cn.cslg.chenxiang.BeautyMusic.interceptor.ValidaLogin" />
+			<interceptor-stack name="interceptor">
+				<interceptor-ref name="authentication" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="interceptor" />
+
+		<!-- Inicio Actions -->
+		<action name="index">
+			<result>/index.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+	</package>
+</struts>
